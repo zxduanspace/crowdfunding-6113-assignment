@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Decentralized Crowdfunding</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>🌱 Decentralized Crowdfunding</h1>
+    <div class="wallet">
+      <span id="network" class="badge"></span>
+      <span id="account"></span>
+      <button id="connectBtn">Connect MetaMask</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Create a Campaign</h2>
+      <form id="createForm">
+        <label>Title
+          <input id="title" maxlength="100" placeholder="1–100 characters" required>
+        </label>
+        <label>Funding goal (ETH)
+          <input id="goal" type="number" step="any" min="0" placeholder="e.g. 0.01" required>
+        </label>
+        <label>Duration
+          <span class="row">
+            <input id="duration" type="number" min="1" step="1" placeholder="e.g. 5" required>
+            <select id="unit">
+              <option value="1">Minutes</option>
+              <option value="60">Hours</option>
+              <option value="1440">Days</option>
+            </select>
+          </span>
+        </label>
+        <button type="submit">Create Campaign</button>
+      </form>
+    </section>
+
+    <section>
+      <h2>Campaigns <button id="refreshBtn" class="small">Refresh</button></h2>
+      <div id="campaigns" class="grid"></div>
+    </section>
+
+    <section class="card">
+      <h2>Transaction Status</h2>
+      <ul id="txList"><li class="muted">No transactions yet</li></ul>
+    </section>
+
+    <section class="card">
+      <h2>On-chain History
+        <label class="inline"><input type="checkbox" id="onlyMine"> Only mine</label>
+      </h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Time</th><th>Type</th><th>Campaign</th><th>Account</th><th>Amount (ETH)</th><th>Tx</th></tr></thead>
+          <tbody id="history"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast"></div>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
